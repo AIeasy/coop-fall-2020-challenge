@@ -15,16 +15,16 @@ class EventSourcer():
     def __init__(self):
         self.value = 0
         self.commandlist=[]
-        self.node = 0;
+        self.node = 0
 
     def add(self, num: int):
-        self.value +=num;
+        self.value +=num
         self.commandlist.append(num)
         self.node=len(self.commandlist)
         pass
 
     def subtract(self, num: int):
-        self.value-=num;
+        self.value-=num
         self.commandlist.append(-num)
         self.node=len(self.commandlist)
         pass
@@ -35,7 +35,7 @@ class EventSourcer():
         pass
 
     def redo(self):
-        self.value+=self.commandlist[self.node+1];
+        self.value+=self.commandlist[self.node+1]
         pass
 
     def bulk_undo(self, steps: int):
