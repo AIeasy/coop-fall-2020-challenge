@@ -1,22 +1,10 @@
-"""
-------------------------------------------------------------------------
-[program description]
-------------------------------------------------------------------------
-Author: Zhongxin Hu
-ID:180896440
-Email:  huxx6440@mylaurier.ca    
-__updated__ =  "2020-07-10"
-------------------------------------------------------------------------
-"""
 class EventSourcer():
     # Do not change the signature of any functions
-   
 
     def __init__(self):
         self.value = 0
         self.redo=[]
         self.undo=[]
-
     def add(self, num: int):
         self.value +=num
         self.redo.append(num)
@@ -36,7 +24,7 @@ class EventSourcer():
             print("Can not undo when there is nothing to undo")
         pass
 
-    def redo(self):
+     def redo(self):
         if len(self.redo)>0:
             self.value+= self.redo.pop()
         else:
