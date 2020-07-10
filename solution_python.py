@@ -14,44 +14,55 @@ class EventSourcer():
 
     def __init__(self):
         self.value = 0
-        self.commandlist=[]
-        self.node = 0
+        self.redo=[]
+        self.undo=[]
 
     def add(self, num: int):
         self.value +=num
-        self.commandlist.append(num)
-        self.node=len(self.commandlist)
+        self.redo.append(num)
         pass
 
     def subtract(self, num: int):
         self.value-=num
-        self.commandlist.append(-num)
-        self.node=len(self.commandlist)
+        self.redo.append(-num)
         pass
 
     def undo(self):
-        self.value-=self.commandlist[len(self.commandlist)]
-        self.node-=1
+        if len(self.undo)>0:
+            value =self.undo.pop()
+            self.value-=value
+            self.undo.append(value)
+        else:
+            print("Can not undo when there is nothing to undo")
         pass
 
     def redo(self):
-        self.value+=self.commandlist[self.node+1]
+        if len(self.redo)>0:
+            self.value+= self.redo.pop()
+        else:
+            
+            print("Can not redo when there is nothing to redo")
         pass
 
     def bulk_undo(self, steps: int):
-        i=0
-        while i<steps :
-            self.value-=self.commandlist[self.node]
-            self.node-=1
-            i+=1
-            
+        
+        while steps>0 :
+            if len(self.undo)>0:
+                value =self.undo.pop()
+                self.value-=value
+                self.undo.append(value)
+            else:
+                print("Can not undo when there is nothing to undo")
+            steps-=1
         pass
 
     def bulk_redo(self, steps: int):
-        j=0
-        while j<steps:
-            self.value+=self.commandlist[self.node];
-            self.node+=1
-            j+=1
+    
+        while steps>0:
+            if len(self.redo)>0:
+                self.value+= self.redo.pop()
+            else:
+                print("Can not redo when there is nothing to redo")
+            steps-=1
 
         pass
