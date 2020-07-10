@@ -3,46 +3,22 @@ class EventSourcer():
 
     def __init__(self):
         self.value = 0
-        self.redo=[]
-        self.undo=[]
+
     def add(self, num: int):
-        self.value +=num
-        self.redo.append(num)
+        self.value+=num
         pass
 
     def subtract(self, num: int):
-        self.value-=num
-        self.redo.append(-num)
         pass
 
     def undo(self):
-        if len(self.undo)>0:
-            value =self.undo.pop()
-            self.value-=value
-            self.undo.append(value)
-        else:
-            print("Can not undo when there is nothing to undo")
         pass
 
-     def redo(self):
-        if len(self.redo)>0:
-            self.value+= self.redo.pop()
-        else:
-            
-            print("Can not redo when there is nothing to redo")
+    def redo(self):
         pass
 
-     def bulk_undo(self, steps: int):
-        
-        while steps>0 :
-            self.undo()
-            steps-=1
+    def bulk_undo(self, steps: int):
         pass
 
     def bulk_redo(self, steps: int):
-    
-        while steps>0:
-            self.redo()
-            steps-=1
-
         pass
