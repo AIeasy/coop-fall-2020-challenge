@@ -32,25 +32,17 @@ class EventSourcer():
             print("Can not redo when there is nothing to redo")
         pass
 
-    def bulk_undo(self, steps: int):
+     def bulk_undo(self, steps: int):
         
         while steps>0 :
-            if len(self.undo)>0:
-                value =self.undo.pop()
-                self.value-=value
-                self.undo.append(value)
-            else:
-                print("Can not undo when there is nothing to undo")
+            self.undo()
             steps-=1
         pass
 
     def bulk_redo(self, steps: int):
     
         while steps>0:
-            if len(self.redo)>0:
-                self.value+= self.redo.pop()
-            else:
-                print("Can not redo when there is nothing to redo")
+            self.redo()
             steps-=1
 
         pass
