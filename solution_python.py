@@ -19,26 +19,30 @@ class EventSourcer():
 
     def add(self, num: int):
         self.value +=num
-        self.redo_list.append(num)
+        self.undo_list.append(num)
         pass
 
     def subtract(self, num: int):
         self.value-=num
-        self.redo_list.append(-num)
+        self.undo_list.append(-num)
         pass
 
     def undo(self):
         if len(self.undo_list)>0:
             value =self.undo_list.pop()
             self.value-=value
-            self.undo_list.append(value)
+            self.redo_list.append(value)
         else:
             print("Can not undo when there is nothing to undo")
         pass
 
     def redo(self):
         if len(self.redo_list)>0:
-            self.value+= self.redo_list.pop()
+            value = self.redo_list.pop()
+            self.value+=value
+            self.undo_list.append(value)
+            
+            
         else:
             
             print("Can not redo when there is nothing to redo")
